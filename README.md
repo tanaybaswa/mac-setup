@@ -26,9 +26,11 @@ Bootstrap scripts to recreate a lean Mac developer environment: core GUI apps, P
 
 ### macOS preferences
 
-- Dock autohide with **zero show delay**
-- Hot corner **bottom-right → Mission Control**
-- Top-right → Notification Center (others off)
+- Dock autohide with **zero show delay** (default slide animation)
+- Hot corners:
+  - **Top-right** → Notification Center
+  - **Bottom-right** → Mission Control
+  - **Top-left / bottom-left** → off
 
 ## What it does *not* install
 
