@@ -2,10 +2,11 @@
 # macOS UI tweaks that match this machine's preferred feel.
 set -euo pipefail
 
-echo "==> Dock: instant autohide (no delay)"
+echo "==> Dock: instant autohide (no delay), default slide animation"
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 0
-defaults write com.apple.dock autohide-time-modifier -float 0.4
+# Leave animation at macOS default (do not set autohide-time-modifier)
+defaults delete com.apple.dock autohide-time-modifier 2>/dev/null || true
 
 echo "==> Hot corners: bottom-right = Mission Control"
 # Corner values: 1=disabled, 2=Mission Control, 3=Application Windows,
