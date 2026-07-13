@@ -26,9 +26,8 @@ else
   eval "$(brew shellenv zsh 2>/dev/null || true)"
 fi
 
-# --- Brewfile (apps + gh) ---------------------------------------------------
-echo "==> brew bundle (Brewfile)"
-brew bundle --file="${ROOT}/Brewfile"
+# --- Brewfile apps + gh (skips anything already on disk) ---------------------
+bash "${ROOT}/scripts/install-brew.sh"
 
 # --- Language / AI CLIs -----------------------------------------------------
 bash "${ROOT}/scripts/install-tooling.sh"

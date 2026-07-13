@@ -51,13 +51,14 @@ Then open a new terminal (or `source ~/.zshrc`) and finish sign-ins listed at th
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/bootstrap.sh` | Full setup (Homebrew → Brewfile → tooling → shell → defaults) |
-| `scripts/install-tooling.sh` | UV/Python, nvm/Node, Claude Code, Cursor Agent only |
+| `scripts/bootstrap.sh` | Full setup (Homebrew → apps/CLIs → shell → defaults) |
+| `scripts/install-brew.sh` | Install Brewfile items **only if missing** (skips existing `.app`s — no re-download) |
+| `scripts/install-tooling.sh` | UV/Python, nvm/Node, Claude Code, Cursor Agent (skips if already present) |
 | `scripts/audit.sh` | Read-only dump of apps, brew packages, CLI versions, Dock prefs |
 | `config/macos-defaults.sh` | Dock + hot corners only |
 | `config/zsh-snippets.sh` | Append PATH hooks for brew / UV / nvm (idempotent) |
 
-Re-run any script safely; most steps skip work that is already done.
+**Skip-if-present behavior:** GUI apps are skipped when `/Applications/<Name>.app` already exists (no Homebrew download). CLIs (`uv`, `claude`, `agent`, `gh`, Node) are skipped when already on `PATH` / already installed. Re-run safely.
 
 ## Manual steps after bootstrap
 

@@ -16,7 +16,11 @@ fi
 export PATH="${HOME}/.local/bin:${PATH}"
 
 echo "==> Python 3.12 (via UV)"
-uv python install 3.12
+if uv python list 2>/dev/null | grep -q 'cpython-3\.12'; then
+  echo "  Python 3.12 already available via UV"
+else
+  uv python install 3.12
+fi
 uv python pin --global 3.12 || true
 
 echo "==> nvm + Node (current LTS / default)"
@@ -29,8 +33,12 @@ else
   # shellcheck disable=SC1091
   . "${HOME}/.nvm/nvm.sh"
 fi
-nvm install --lts
-nvm alias default 'lts/*'
+if command -v node >/dev/null 2>&1 && [[ -n "$(nvm current 2>/dev/null)" && "$(nvm current)" != "none" ]]; then
+  echo "  node already active: $(node --version) — not reinstalling"
+else
+  nvm install --lts
+  nvm alias default 'lts/*'
+fi
 
 echo "==> Claude Code CLI"
 if have claude; then
